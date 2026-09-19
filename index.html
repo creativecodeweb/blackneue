@@ -1,16 +1,13 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blackneue // Alex Portfolio</title>
+    <title>Blackneue // Alex Portfolio & Case Studies</title>
     <style>
-/* ==========================================================================
-   1. Modern Design System & CSS Variables
-   ========================================================================== */
 :root {
     --bg-base: #fafafa;
-    --bg-surface: rgba(255, 255, 255, 0.75);
+    --bg-surface: rgba(255, 255, 255, 0.82);
     --bg-card: #ffffff;
     --text-main: #171717;
     --text-muted: #666666;
@@ -22,12 +19,13 @@
     --radius-md: 16px;
     --radius-lg: 24px;
     --shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    --shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.25);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] {
     --bg-base: #0a0a0a;
-    --bg-surface: rgba(18, 18, 18, 0.75);
+    --bg-surface: rgba(18, 18, 18, 0.82);
     --bg-card: #141414;
     --text-main: #f5f5f5;
     --text-muted: #a3a3a3;
@@ -36,11 +34,9 @@
     --accent-light: #172554;
     --border: rgba(255, 255, 255, 0.08);
     --shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    --shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
-/* ==========================================================================
-   Background Tech Canvas Animation (Tech Mahindra Style)
-   ========================================================================== */
 #tech-canvas {
     position: fixed;
     top: 0;
@@ -51,9 +47,6 @@
     pointer-events: none;
 }
 
-/* ==========================================================================
-   2. Smooth UX Resets & Base Configuration
-   ========================================================================== */
 html {
     scroll-behavior: smooth;
 }
@@ -76,34 +69,31 @@ body {
 }
 
 .container {
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.25rem;
     transition: max-width 0.3s ease;
 }
 
-/* ==========================================================================
-   3. Floating Sticky Navigation (Glassmorphism)
-   ========================================================================== */
 .navbar {
     position: sticky;
-    top: 20px;
-    z-index: 1000;
+    top: 12px;
+    z-index: 100;
     background: var(--bg-surface);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    margin: 1.5rem 0 0 0;
+    margin: 0.75rem 0 0 0;
     box-shadow: var(--shadow);
-    transition: top 0.3s ease, margin 0.3s ease;
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 0.85rem 1.25rem;
 }
 
 .logo {
@@ -118,16 +108,16 @@ body {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 1.5rem;
+    gap: 0.75rem;
 }
 
 .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     transition: var(--transition);
-    padding: 0.5rem 0.75rem;
+    padding: 0.4rem 0.6rem;
     border-radius: var(--radius-sm);
 }
 
@@ -136,7 +126,6 @@ body {
     background: var(--border);
 }
 
-/* Micro-interaction: Theme Switcher */
 .theme-toggle {
     background: none;
     border: 1px solid var(--border);
@@ -154,11 +143,8 @@ body {
     background: var(--border);
 }
 
-/* ==========================================================================
-   4. Typography Focused Hero Section
-   ========================================================================== */
 .hero {
-    padding: 8rem 0 6rem;
+    padding: 4rem 0 3rem;
     text-align: left;
     max-width: 800px;
 }
@@ -169,11 +155,11 @@ body {
     gap: 0.5rem;
     background: var(--accent-light);
     color: var(--accent);
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.85rem;
     border-radius: 100px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .badge::before {
@@ -186,33 +172,39 @@ body {
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 7vw, 3.8rem);
     font-weight: 800;
     line-height: 1.15;
     letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .hero p {
-    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-size: clamp(1rem, 3vw, 1.25rem);
     color: var(--text-muted);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
-/* ==========================================================================
-   5. Interactive Buttons
-   ========================================================================== */
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
 .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     background-color: var(--text-main);
     color: var(--bg-base);
     padding: 0.85rem 1.75rem;
     border-radius: var(--radius-sm);
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.95rem;
     transition: var(--transition);
     border: 1px solid transparent;
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -224,32 +216,28 @@ body {
     background-color: transparent;
     color: var(--text-main);
     border: 1px solid var(--border);
-    margin-left: 1rem;
 }
 
 .btn-secondary:hover {
     background-color: var(--border);
 }
 
-/* ==========================================================================
-   6. Portfolio Filtering Controls
-   ========================================================================== */
 .filters {
     display: flex;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
 }
 
 .filter-btn {
     background: transparent;
     border: 1px solid var(--border);
-    padding: 0.5rem 1.25rem;
+    padding: 0.5rem 1rem;
     border-radius: 100px;
     cursor: pointer;
     color: var(--text-muted);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: var(--transition);
 }
 
@@ -259,14 +247,11 @@ body {
     border-color: var(--text-main);
 }
 
-/* ==========================================================================
-   7. Grid Layout & Depth UX (Cards & Custom Artwork Images)
-   ========================================================================== */
 .work-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-    margin-bottom: 6rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
 }
 
 .project-card {
@@ -278,17 +263,18 @@ body {
     transition: var(--transition);
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .project-card:hover {
     transform: translateY(-6px);
     border-color: var(--accent);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 .project-image {
     width: 100%;
-    height: 220px;
+    height: 200px;
     position: relative;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
@@ -308,7 +294,7 @@ body {
 }
 
 .project-info {
-    padding: 1.75rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -329,7 +315,7 @@ body {
 }
 
 .project-info h3 {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
     letter-spacing: -0.01em;
@@ -338,137 +324,256 @@ body {
 .project-info p {
     font-size: 0.95rem;
     color: var(--text-muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     flex-grow: 1;
 }
 
 .project-link {
     align-self: flex-start;
-    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
     font-weight: 600;
     font-size: 0.9rem;
     color: var(--accent);
     transition: var(--transition);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .project-link:hover {
     color: var(--accent-hover);
+    gap: 0.6rem;
 }
 
-/* ==========================================================================
-   8. High-Converting Contact Call-To-Action
-   ========================================================================== */
 .contact {
-    padding: 5rem 3rem;
+    padding: 3.5rem 1.5rem;
     background-color: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
     box-shadow: var(--shadow);
 }
 
 .contact h2 {
-    font-size: 2.25rem;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
     font-weight: 800;
     letter-spacing: -0.02em;
     margin-bottom: 1rem;
 }
 
-/* ==========================================================================
-   9. System Footer & Entrance Motion System
-   ========================================================================== */
 footer {
-    padding: 3rem 0;
+    padding: 2.5rem 0;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     border-top: 1px solid var(--border);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.project-card {
-    animation: fadeIn 0.5s ease backwards;
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* ==========================================================================
-   10. Comprehensive Media Queries (Responsiveness Overrides)
-   ========================================================================== */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 1.25rem;
+.modal-content {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--shadow-modal);
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 1.75rem;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: var(--border);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    background: var(--text-main);
+    color: var(--bg-base);
+}
+
+.modal-header {
+    margin-bottom: 1.5rem;
+    padding-right: 2.5rem;
+}
+
+.modal-title {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 800;
+    margin-top: 0.5rem;
+    line-height: 1.2;
+}
+
+.case-study-hero-img {
+    width: 100%;
+    height: 220px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+}
+
+.case-study-hero-img svg {
+    width: 100%;
+    height: 100%;
+}
+
+.case-study-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.cs-section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cs-section-title::before {
+    content: "";
+    width: 4px;
+    height: 18px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.cs-p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.cs-tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tech-chip {
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.cs-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.metric-card {
+    background: var(--bg-base);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+@media (min-width: 640px) {
+    .hero-actions {
+        flex-direction: row;
     }
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
+@media (min-width: 992px) {
+    .container {
+        padding: 0 2rem;
+    }
     .navbar {
-        top: 10px;
-        margin: 0.75rem 0 0 0;
+        top: 20px;
+        margin: 1.5rem 0 0 0;
     }
-
-    .nav-container {
-        padding: 0.75rem 1rem;
-    }
-
     .hero {
-        padding: 5rem 0 3.5rem;
+        padding: 7rem 0 5rem;
     }
-
-    .btn {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 0.75rem;
-    }
-
-    .btn-secondary {
-        margin-left: 0;
-    }
-
     .work-grid {
-        gap: 1.5rem;
-        margin-bottom: 4rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
     }
-
-    .contact {
-        padding: 3.5rem 1.5rem;
-        margin-bottom: 4rem;
+    .modal-content {
+        padding: 2.5rem;
     }
-}
-
-@media (max-width: 480px) {
-    .nav-links {
-        gap: 0.75rem;
-    }
-    
-    .nav-links a {
-        font-size: 0.85rem;
-        padding: 0.4rem 0.5rem;
-    }
-
-    .work-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .project-image {
-        height: 180px;
-    }
-}
-
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1250px;
+    .case-study-hero-img {
+        height: 280px;
     }
 }
     </style>
 </head>
 <body>
-    <!-- Tech Mahindra Style Interactive Animation Canvas -->
     <canvas id="tech-canvas"></canvas>
 
     <div class="container">
+        <!-- Floating Navigation -->
         <nav class="navbar">
             <div class="nav-container">
                 <a href="#" class="logo">BLACKNEUE //</a>
@@ -484,14 +589,18 @@ footer {
             </div>
         </nav>
 
+        <!-- Hero Section -->
         <section class="hero">
             <div class="badge">Available for freelance contracts</div>
             <h1>Designing interfaces that feel natural. Building code that performs.</h1>
-            <p>Hi, I am Alex. A creative developer focused on crafting clean design architectures and elegant user spaces.</p>
-            <a href="#contact" class="btn">Start a Project</a>
-            <a href="#work" class="btn btn-secondary">Explore Work</a>
+            <p>Hi, I am Aadi. A creative developer focused on crafting clean design architectures and elegant user spaces.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn">Start a Project</a>
+                <a href="#work" class="btn btn-secondary">Explore Work</a>
+            </div>
         </section>
 
+        <!-- Main Work Showcase Section -->
         <main id="work">
             <div class="filters">
                 <button class="filter-btn active" onclick="filterSelection('all', this)">All Work</button>
@@ -501,7 +610,7 @@ footer {
 
             <div class="work-grid">
                 <!-- Project 1 -->
-                <article class="project-card app">
+                <article class="project-card app" onclick="openModal('finops')">
                     <div class="project-image">
                         <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
                             <defs>
@@ -522,12 +631,12 @@ footer {
                         <div class="project-tags"><span class="tag">E-Commerce</span></div>
                         <h3>FinOps Checkout</h3>
                         <p>Streamlined dynamic purchasing interface optimized to remove micro-friction during user transactions.</p>
-                        <a href="#" class="project-link">Explore case study &rarr;</a>
+                        <button class="project-link" type="button">Explore case study &rarr;</button>
                     </div>
                 </article>
 
                 <!-- Project 2 -->
-                <article class="project-card app">
+                <article class="project-card app" onclick="openModal('pulse')">
                     <div class="project-image">
                         <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
                             <rect width="100%" height="100%" fill="#0f172a"/>
@@ -541,12 +650,12 @@ footer {
                         <div class="project-tags"><span class="tag">Analytics</span></div>
                         <h3>Pulse Analytics</h3>
                         <p>A minimalist team dashboard turning layered structural database logs into clear, actionable health lines.</p>
-                        <a href="#" class="project-link">Explore case study &rarr;</a>
+                        <button class="project-link" type="button">Explore case study &rarr;</button>
                     </div>
                 </article>
 
                 <!-- Project 3 -->
-                <article class="project-card design">
+                <article class="project-card design" onclick="openModal('aura')">
                     <div class="project-image">
                         <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
                             <rect width="100%" height="100%" fill="#18181b"/>
@@ -561,12 +670,13 @@ footer {
                         <div class="project-tags"><span class="tag">Design Tokens</span></div>
                         <h3>Aura UI</h3>
                         <p>A clean token architecture built to scale complex thematic styles effortlessly across React and CSS layers.</p>
-                        <a href="#" class="project-link">Explore case study &rarr;</a>
+                        <button class="project-link" type="button">Explore case study &rarr;</button>
                     </div>
                 </article>
             </div>
         </main>
 
+        <!-- Contact Section -->
         <section id="contact" class="contact">
             <h2>Let's build something unforgettable.</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 500px; margin-inline: auto;">
@@ -575,13 +685,170 @@ footer {
             <a href="mailto:creativecodeweb@gmail.com" class="btn">creativecodeweb@gmail.com</a>
         </section>
 
+        <!-- Footer Section -->
         <footer>
             <p>&copy; 2026 Powered by Blackneue♥️</p>
         </footer>
     </div>
 
+    <div class="modal-overlay" id="caseStudyModal" onclick="handleOverlayClick(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close Case Study">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div id="modalBody">
+                <!-- Case Study Details injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Smooth theme toggling mechanics
+        const caseStudies = {
+            finops: {
+                title: "FinOps Checkout - High Conversion Payment Flow",
+                tag: "E-Commerce / Web App",
+                heroSvg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1_modal" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.8" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="#111827"/>
+                    <rect x="30" y="20" width="340" height="180" rx="10" fill="url(#grad1_modal)" stroke="rgba(255,255,255,0.1)"/>
+                    <rect x="50" y="45" width="140" height="14" rx="4" fill="#3b82f6"/>
+                    <rect x="50" y="70" width="300" height="10" rx="4" fill="rgba(255,255,255,0.3)"/>
+                    <rect x="50" y="90" width="220" height="10" rx="4" fill="rgba(255,255,255,0.2)"/>
+                    <rect x="50" y="125" width="120" height="38" rx="6" fill="#2563eb"/>
+                </svg>`,
+                overview: "FinOps Checkout redesigned the multi-step purchasing flow for global cross-border transactions. By replacing traditional forms with localized step updates and adaptive validation, user friction was minimized.",
+                features: [
+                    "Adaptive dynamic currency and payment method detection.",
+                    "Sub-100ms real-time form validation using web worker engines.",
+                    "Biometric 1-click authentication integration."
+                ],
+                tech: ["React", "TypeScript", "Tailwind CSS", "Stripe API", "Node.js"],
+                metrics: [
+                    { value: "+34%", label: "Conversion Rate Improvement" },
+                    { value: "0.4s", label: "Average Checkout Time" },
+                    { value: "99.98%", label: "Uptime Reliability" }
+                ]
+            },
+            pulse: {
+                title: "Pulse Analytics - Real-Time Infrastructure Monitoring",
+                tag: "Analytics / Web App",
+                heroSvg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100%" height="100%" fill="#0f172a"/>
+                    <path d="M40 140 Q 90 60, 140 100 T 240 50 T 360 90" fill="none" stroke="#10b981" stroke-width="4"/>
+                    <path d="M40 140 Q 90 60, 140 100 T 240 50 T 360 90 L 360 190 L 40 190 Z" fill="rgba(16, 185, 129, 0.15)"/>
+                    <circle cx="240" cy="50" r="7" fill="#10b981"/>
+                </svg>`,
+                overview: "Pulse Analytics visualizes millions of log events per second in a responsive dashboard interface. Built for devops teams to detect micro-outages before they impact user sessions.",
+                features: [
+                    "WebSockets stream for instant log rendering with minimal drop frames.",
+                    "Custom SVG canvas engine optimized for mobile touch control.",
+                    "Configurable alert triggers with instant webhook notifications."
+                ],
+                tech: ["Next.js", "D3.js", "WebSockets", "Tailwind CSS", "Go Engine"],
+                metrics: [
+                    { value: "10M+", label: "Events Streamed / Min" },
+                    { value: "<12ms", label: "Dashboard Latency" },
+                    { value: "100%", label: "Mobile Responsive Score" }
+                ]
+            },
+            aura: {
+                title: "Aura UI - Comprehensive Design System & Tokens",
+                tag: "Design Systems / Tokens",
+                heroSvg: `<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100%" height="100%" fill="#18181b"/>
+                    <rect x="40" y="30" width="90" height="90" rx="14" fill="#8b5cf6"/>
+                    <rect x="155" y="30" width="90" height="90" rx="14" fill="#ec4899"/>
+                    <rect x="270" y="30" width="90" height="90" rx="14" fill="#06b6d4"/>
+                    <rect x="40" y="140" width="320" height="14" rx="7" fill="rgba(255,255,255,0.2)"/>
+                    <rect x="40" y="165" width="200" height="14" rx="7" fill="rgba(255,255,255,0.1)"/>
+                </svg>`,
+                overview: "Aura UI provides design tokens and headless component primitives that synchronise across iOS, Android, and Web applications seamlessly.",
+                features: [
+                    "Automated dark/light theme switching using CSS variables.",
+                    "Full WCAG AAA accessibility contrast compliant token palettes.",
+                    "Export support for Figma, React, Vue, and Tailwind config."
+                ],
+                tech: ["Figma Tokens", "CSS Variables", "React", "Storybook", "TypeScript"],
+                metrics: [
+                    { value: "80+", label: "Accessible Components" },
+                    { value: "3x", label: "Faster UI Prototyping" },
+                    { value: "AAA", label: "Accessibility Score" }
+                ]
+            }
+        };
+
+        function openModal(id) {
+            const data = caseStudies[id];
+            if (!data) return;
+
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <div class="modal-header">
+                    <span class="tag">${data.tag}</span>
+                    <h2 class="modal-title">${data.title}</h2>
+                </div>
+                <div class="case-study-hero-img">
+                    ${data.heroSvg}
+                </div>
+                <div class="case-study-body">
+                    <div>
+                        <h4 class="cs-section-title">Overview</h4>
+                        <p class="cs-p">${data.overview}</p>
+                    </div>
+                    <div>
+                        <h4 class="cs-section-title">Key Features</h4>
+                        <ul class="cs-p" style="padding-left: 1.25rem;">
+                            ${data.features.map(f => `<li style="margin-bottom: 0.35rem;">${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="cs-section-title">Tech Stack</h4>
+                        <div class="cs-tech-grid">
+                            ${data.tech.map(t => `<span class="tech-chip">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="cs-section-title">Key Results & Impact</h4>
+                        <div class="cs-metrics-grid">
+                            ${data.metrics.map(m => `
+                                <div class="metric-card">
+                                    <div class="metric-value">${m.value}</div>
+                                    <div class="metric-label">${m.label}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('caseStudyModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('caseStudyModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handleOverlayClick(e) {
+            if (e.target.id === 'caseStudyModal') {
+                closeModal();
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
         const toggleButton = document.getElementById('themeToggle');
         if (toggleButton) {
             toggleButton.addEventListener('click', () => {
@@ -594,7 +861,6 @@ footer {
             });
         }
 
-        // Client-side quick filter logic
         function filterSelection(category, button) {
             const cards = document.querySelectorAll('.project-card');
             const buttons = document.querySelectorAll('.filter-btn');
@@ -613,20 +879,16 @@ footer {
             });
         }
 
-        /* ==========================================================================
-           Tech Mahindra Style Canvas Background Particle Script
-           ========================================================================== */
         const canvas = document.getElementById('tech-canvas');
         const ctx = canvas.getContext('2d');
 
         let particlesArray = [];
-        const numberOfParticles = 85;
+        const numberOfParticles = 70;
 
-        // Track Mouse
         const mouse = {
             x: null,
             y: null,
-            radius: 150
+            radius: 140
         };
 
         window.addEventListener('mousemove', (e) => {
@@ -650,14 +912,13 @@ footer {
             initParticles();
         });
 
-        // Particle Class
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.8;
-                this.speedY = (Math.random() - 0.5) * 0.8;
+                this.speedX = (Math.random() - 0.5) * 0.7;
+                this.speedY = (Math.random() - 0.5) * 0.7;
             }
 
             update() {
@@ -684,7 +945,7 @@ footer {
         }
 
         function connectParticles(isDarkTheme) {
-            const maxDistance = 120;
+            const maxDistance = 110;
             const lineColor = isDarkTheme ? '59, 130, 246' : '37, 99, 235';
 
             for (let a = 0; a < particlesArray.length; a++) {
@@ -695,7 +956,7 @@ footer {
 
                     if (distance < maxDistance) {
                         const opacity = 1 - (distance / maxDistance);
-                        ctx.strokeStyle = `rgba(${lineColor}, ${opacity * 0.25})`;
+                        ctx.strokeStyle = `rgba(${lineColor}, ${opacity * 0.2})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -704,7 +965,6 @@ footer {
                     }
                 }
 
-                // Connect to Mouse
                 if (mouse.x && mouse.y) {
                     const mDx = particlesArray[a].x - mouse.x;
                     const mDy = particlesArray[a].y - mouse.y;
@@ -712,7 +972,7 @@ footer {
 
                     if (mDistance < mouse.radius) {
                         const mOpacity = 1 - (mDistance / mouse.radius);
-                        ctx.strokeStyle = `rgba(${lineColor}, ${mOpacity * 0.45})`;
+                        ctx.strokeStyle = `rgba(${lineColor}, ${mOpacity * 0.4})`;
                         ctx.lineWidth = 1.2;
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -736,8 +996,10 @@ footer {
             requestAnimationFrame(animate);
         }
 
-        initParticles();
-        animate();
+        window.onload = function() {
+            initParticles();
+            animate();
+        };
     </script>
 </body>
 </html>
